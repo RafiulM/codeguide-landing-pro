@@ -23,20 +23,31 @@ function Hero() {
     <div className="w-full">
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
-          <div>
+          <header>
             <a
               href="https://codeguide.dev"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-row items-center gap-2"
+              aria-label="Visit CodeGuide.dev website"
             >
-              <Image src="/codeguide-logo.png" alt="CodeGuide" width={42} height={42} />
+              <Image 
+                src="/codeguide-logo.png" 
+                alt="CodeGuide.dev Logo" 
+                width={42} 
+                height={42}
+                priority
+                sizes="42px"
+              />
               <span className="logo-text text-3xl font-bold">CodeGuide</span>
             </a>
-          </div>
+          </header>
           <div className="flex flex-col gap-4">
             <h1 className="font-regular max-w-2xl text-center text-5xl tracking-tighter md:text-7xl">
               <span className="relative flex w-full justify-center overflow-hidden text-center md:mb-1">
+                <span className="sr-only" aria-live="polite" aria-atomic="true">
+                  {titles[titleNumber]} Starter Kit
+                </span>
                 &nbsp;
                 {titles.map((title, index) => (
                   <motion.span
@@ -55,6 +66,7 @@ function Hero() {
                             opacity: 0,
                           }
                     }
+                    aria-hidden={titleNumber !== index}
                   >
                     {title}
                   </motion.span>
